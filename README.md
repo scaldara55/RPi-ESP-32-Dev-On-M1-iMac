@@ -105,5 +105,7 @@ uv tool run --from esptool esptool write_flash --flash-size=detect 0 ~/Downloads
 
 ```
 
+I've flashed two board and they have problems.  I then found [this website](https://esphome.github.io/esp-web-tools/) for flashing ESP-32
+
 
 
