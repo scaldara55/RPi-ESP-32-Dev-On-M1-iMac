@@ -73,7 +73,7 @@ Next, I used the [information on this page](https://jfcarr.github.io/kbase/artic
 to complete my setup.
 
 I created a Code directory in GitHub and then pulled it down to my local machine. I went into the Code directory to 
-initialze the UV environment and to build the esptool.
+initialze the UV environment and to build the esptool.  Then check to see if the built esptool runs correctly
 
 ```console
 
@@ -81,8 +81,16 @@ git pull
 cd Code
 uv init
 uv add esptool
+uv tool run --from esptool esptool
 
 ```
 
+Next, plug in the ESP-32 device into the USB cable and check to see if one can talk to it.
+
+```console
+
+uv tool run --from esptool esptool chip_id
+
+```
 
 
