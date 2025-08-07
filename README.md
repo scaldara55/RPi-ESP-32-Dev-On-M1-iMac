@@ -93,4 +93,17 @@ uv tool run --from esptool esptool chip_id
 
 ```
 
+Now update the micropython code installed on the ESP-32 device.  Look for the code associated with [your specific
+device here](https://micropython.org/download/). Download the appropriate bin file.
+
+Erase the existing image and load the new image.
+
+```console
+
+uv tool run --from esptool esptool erase_flash
+uv tool run --from esptool esptool write_flash --flash-size=detect 0 ~/Downloads/ESP32_GENERIC-20250415-v1.25.0.bin 
+
+```
+
+
 
