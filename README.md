@@ -101,7 +101,7 @@ Erase the existing image and load the new image.
 ```console
 
 uv tool run --from esptool esptool erase_flash
-uv tool run --from esptool esptool write_flash --flash-size=detect 0 ~/Downloads/ESP32_GENERIC-20250415-v1.25.0.bin 
+uv tool run --from esptool esptool --baud 460800 write_flash --flash-size=detect 0x1000 ~/Downloads/ESP32_GENERIC-20250415-v1.25.0.bin
 
 ```
 
@@ -123,6 +123,14 @@ Using rshell in the UV environment
 uv tool run --from rshell rshell
 connect serial /dev/cu.usbserial-0001 115200
 
+
+```
+
+Using macOS screen
+
+```console
+
+screen /dev/cu.usbserial-0001 115200
 
 ```
 
