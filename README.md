@@ -59,3 +59,15 @@ brew install micropython
 It's a big advantage to do python development using virtual environments.  Years ago I used virtualenv.  Since then there
 have been many others.  It seems that UV might be the latest and greatest.
 
+Here is some [general info on UV](https://docs.astral.sh/uv/getting-started/installation/). I installed it with:
+
+```console
+
+brew install uv
+
+```
+
+Here is some information on [how to use UV to manage Python projects](https://realpython.com/python-uv/)
+
+
+
