@@ -106,6 +106,25 @@ uv tool run --from esptool esptool write_flash --flash-size=detect 0 ~/Downloads
 ```
 
 I've flashed two board and they have problems.  I then found [this website](https://esphome.github.io/esp-web-tools/) for flashing ESP-32
+I went down a bunch of twisty little passages and came to a dead end.  It loaded a special ESP-32 set of tools.  I then reflashed the micropython
+using esptool.
+
+Load rshell into the UV environment
+
+```console
+
+uv pip install rshell
+
+```
+
+Using rshell in the UV environment
+
+```console
+uv tool run --from rshell rshell
+connect serial /dev/cu.usbserial-0001 115200
+
+
+```
 
 
 
