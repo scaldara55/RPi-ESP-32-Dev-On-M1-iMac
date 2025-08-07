@@ -69,5 +69,9 @@ brew install uv
 
 Here is some information on [how to use UV to manage Python projects](https://realpython.com/python-uv/)
 
+Next, I used the [information on this page](https://jfcarr.github.io/kbase/articles/using_uv_esp8266_micropython.html)
+to complete my setup.
+
+
 
 
