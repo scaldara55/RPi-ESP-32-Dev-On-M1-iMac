@@ -72,17 +72,17 @@ Here is some information on [how to use UV to manage Python projects](https://re
 Next, I used the [information on this page](https://jfcarr.github.io/kbase/articles/using_uv_esp8266_micropython.html)
 to complete my setup.
 
-I created a Code directory in GitHub and then pulled it down to my local machine using:
+I created a Code directory in GitHub and then pulled it down to my local machine. I went into the Code directory to 
+initialze the UV environment and to build the esptool.
 
 ```console
 
 git pull
 cd Code
+uv init
+uv add esptool
 
 ```
-
-
-
 
 
 
