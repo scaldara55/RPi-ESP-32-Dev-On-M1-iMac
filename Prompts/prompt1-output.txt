@@ -1,0 +1,118 @@
++-----------------------------------------------------------------------------------+
+| Product Requirements Document                                                     |
+| Title: ESP32-WROVER Si7021 Temperature and Humidity Logger                        |
+| Version: 1.0                                                                     |
+| Date: August 08, 2025                                                            |
+| Author: Grok 3, xAI                                                              |
++-----------------------------------------------------------------------------------+
+
+1. Overview
+-----------
+This document outlines the requirements for a MicroPython-based temperature and humidity 
+logging system using the ESP32-WROVER DevKit V1 and the Si7021 sensor. The system will 
+collect environmental data over I2C, log it to a CSV file, and operate autonomously upon 
+power-on, returning control to the REPL after completion.
+
+2. Objectives
+-------------
+- Enable autonomous temperature and humidity data collection on the ESP32-WROVER.
+- Store data in a CSV file with a timestamp-based filename.
+- Ensure reliable I2C communication with the Si7021 sensor.
+- Provide a simple, maintainable MicroPython script for data logging.
+
+3. System Requirements
+---------------------
+3.1 Hardware
+- ESP32-WROVER DevKit V1 (30 or 36 GPIO version).
+- Si7021 Temperature and Humidity Sensor.
+- Wiring:
+  - Si7021 VCC to ESP32 3.3V pin.
+  - Si7021 GND to ESP32 GND pin.
+  - Si7021 SDA to ESP32 GPIO21 (default I2C SDA).
+  - Si7021 SCL to ESP32 GPIO22 (default I2C SCL).
+  - 10kΩ pull-up resistors between SDA and VCC, and SCL and VCC.
+- Power supply: USB or external 3.3V source.
+
+3.2 Software
+- MicroPython firmware installed on ESP32-WROVER.
+- si7021 MicroPython library (available from GitHub or equivalent).
+- Development environment: Thonny, uPyCraft, or similar for uploading script.
+
+4. Functional Requirements
+-------------------------
+4.1 System Initialization
+- The script shall execute automatically upon power-on (saved as main.py).
+- Initialize I2C communication on GPIO21 (SDA) and GPIO22 (SCL).
+- Initialize the Si7021 sensor using the si7021 library.
+
+4.2 Data Collection
+- Collect temperature and humidity readings every 15 seconds.
+- Data collection shall continue for exactly 3 minutes (180 seconds).
+
+4.3 File Handling
+- Create a CSV file with filename format: YYYYMMDD_HHMMSS.csv.
+- Write a header row: "Date,Time,Temperature,Humidity".
+- Append each reading as a row in format: YYYY-MM-DD,HH:MM:SS,temperature,humidity.
+- Temperature and humidity values shall be formatted to 2 decimal places.
+- Close the file after 3 minutes of data collection.
+
+4.4 System Termination
+- After 3 minutes, stop data collection and close the file.
+- Return control to the MicroPython REPL for user interaction.
+
+5. Non-Functional Requirements
+-----------------------------
+- Reliability: Ensure stable I2C communication with proper pull-up resistors.
+- Performance: Minimize CPU and memory usage for efficient operation.
+- Maintainability: Use clear variable names and modular code structure.
+- Storage: Ensure sufficient flash storage for MicroPython and CSV file (ESP32-WROVER has 4MB flash).
+
+6. Constraints
+--------------
+- Si7021 operates at 1.9V to 3.6V; ESP32 3.3V pin must be used.
+- Only one Si7021 sensor can be connected to the I2C bus (address 0x40).
+- File system operations must account for MicroPython’s limited file handling capabilities.
+- No external libraries beyond si7021 and standard MicroPython modules.
+
+7. Assumptions
+-------------
+- The user has basic knowledge of MicroPython and ESP32 setup.
+- The Si7021 sensor is functional and properly wired.
+- The ESP32-WROVER has sufficient power and stable connections.
+- The si7021 MicroPython library is pre-installed on the device.
+
+8. Risks
+--------
+- Risk: I2C communication failure due to improper wiring or missing pull-up resistors.
+  Mitigation: Provide clear wiring instructions and recommend 10kΩ pull-up resistors.
+- Risk: File system errors due to flash memory limitations.
+  Mitigation: Ensure CSV file is closed properly and limit data collection duration.
+- Risk: Incorrect timekeeping if RTC is not set.
+  Mitigation: Use localtime() and assume initial time is set by the user.
+
+9. Deliverables
+---------------
+- MicroPython script (si7021_logger.py) meeting all functional requirements.
+- Documentation for wiring and setup instructions.
+- CSV file output with collected data.
+
+10. Acceptance Criteria
+----------------------
+- Script runs automatically on power-on.
+- Correctly initializes Si7021 sensor and I2C bus.
+- Creates a CSV file with the correct filename and header.
+- Logs temperature and humidity every 15 seconds for 3 minutes.
+- Data is formatted correctly in CSV (YYYY-MM-DD,HH:MM:SS,XX.XX,XX.XX).
+- File is closed, and REPL is accessible after completion.
+- No errors during execution (e.g., I2C or file system errors).
+
+11. References
+--------------
+- ESP32-WROVER DevKit V1 Pinout: https://www.espressif.com
+- Si7021 Datasheet: https://www.silabs.com/documents/public/data-sheets/Si7021-A20.pdf
+- MicroPython Documentation: https://docs.micropython.org
+- Random Nerd Tutorials (ESP32 I2C): https://randomnerdtutorials.com/esp32-i2c-communication-arduino-ide/
+
+12. Revision History
+-------------------
+- Version 1.0: Initial draft, August 08, 2025.

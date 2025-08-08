@@ -1,0 +1,17 @@
+Act as a software developer familiar with the ESP-32 and micropython.
+I'm using the ESP-32 dev kit v1 WROVER.
+I want to connect a Si7021 temperature and humidity sensor to it over the I2C bus.
+Which pins ong the ESP-32 dev kit should I use?
+I want a micropython script that does the following:
+1. Runs immediately from power on.
+2. Initializes the the Si7021
+3. Opens a local file with using the current date and time for a filename.
+4. Collects both temperature and humidity every 15 seconds.
+5. Writes it to a text file in csv format.
+6. The column headings are Date, Time, Temperature, Humidity.
+7. After 3 minutes have elapsed data collection stops.
+8. The file is closed.
+9. Control returns to the REPL prompt.
+
+Write me a product requirements document using ASCII text.
+
